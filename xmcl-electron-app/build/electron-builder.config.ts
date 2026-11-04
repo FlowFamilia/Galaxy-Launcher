@@ -92,8 +92,8 @@ export const config = {
     icon: 'icons/dark.ico',
     electronLanguages: ['en-US'],
     target: [
-      { target: 'nsis', arch: ['x64', 'arm64'] },
-      { target: 'zip', arch: ['x64', 'arm64'] },
+      { target: 'nsis', arch: ['x64'] },
+      { target: 'zip', arch: ['x64'] },
     ],
   },
   linux: {
