@@ -73,7 +73,7 @@ export const config = {
     target: [
       {
         target: 'dmg',
-        arch: ['arm64', 'x64'],
+        arch: ['x64'],
       },
     ],
     extendInfo: {
