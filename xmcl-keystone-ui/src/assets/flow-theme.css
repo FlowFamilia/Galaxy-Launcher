@@ -1,0 +1,44 @@
+
+/* FLOW Launcher - GamerZone brand theme */
+
+.v-application.dark {
+  --v-theme-primary: 145, 91, 255;
+  --v-theme-secondary: 49, 36, 68;
+  --v-theme-background: 16, 13, 24;
+  --v-theme-surface: 29, 23, 41;
+  --v-theme-on-surface: 242, 237, 250;
+  background: #100d18 !important;
+  color: #f2edfa;
+}
+
+.v-application.dark .app-layout {
+  background: #100d18;
+}
+
+.v-application.dark .sidebar,
+.v-application.dark .sidebar-horizontal {
+  background: rgba(25, 19, 36, 0.96) !important;
+  border-color: rgba(170, 125, 255, 0.18);
+}
+
+.v-application.dark .sidebar__divider {
+  background-color: rgba(170, 125, 255, 0.18);
+}
+
+.v-application.dark .home-title {
+  color: #f5efff;
+}
+
+.v-application.dark .v-card {
+  border-color: rgba(170, 125, 255, 0.13);
+}
+
+.v-application.dark .v-btn--variant-flat.v-btn--color-primary,
+.v-application.dark .v-btn.bg-primary {
+  background: linear-gradient(135deg, #9458f5, #6935c7) !important;
+  color: white !important;
+}
+
+.v-application.dark .sidebar-item--active {
+  color: #b992ff;
+}

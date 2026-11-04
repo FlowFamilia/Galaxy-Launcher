@@ -8,7 +8,12 @@
     class="sidebar moveable z-10"
     :style="{ 'backdrop-filter': `blur(${blurSidebar}px)`, backgroundColor: sideBarColor }"
   >
-    <div v-roving-tabindex role="group" class="sidebar__section">
+        <div class="galaxy-sidebar-brand" aria-label="Galaxy Launcher">
+      <div class="galaxy-sidebar-brand__mark">G</div>
+      <span class="galaxy-sidebar-brand__name">GALAXY</span>
+    </div>
+
+<div v-roving-tabindex role="group" class="sidebar__section">
       <button
         v-shared-tooltip.right="() => t('shared.back')"
         type="button"
@@ -402,4 +407,39 @@ useDragAutoScroll(instancesScrollEl)
 .sidebar-back-btn:active {
   background-color: rgba(255, 255, 255, 0.2);
 }
+
+/* Galaxy Launcher sidebar branding */
+.galaxy-sidebar-brand {
+  display: flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  padding: 9px 0 16px;
+  user-select: none;
+}
+
+.galaxy-sidebar-brand__mark {
+  display: flex;
+  width: 43px;
+  height: 43px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 14px;
+  background: linear-gradient(145deg, #a978ff 0%, #7135d2 55%, #48218e 100%);
+  box-shadow: 0 5px 20px rgba(126, 65, 224, 0.35);
+  color: #ffffff;
+  font-size: 25px;
+  font-weight: 900;
+  letter-spacing: -2px;
+}
+
+.galaxy-sidebar-brand__name {
+  color: #c7a8ff;
+  font-size: 9px;
+  font-weight: 900;
+  letter-spacing: 2.5px;
+}
+
 </style>

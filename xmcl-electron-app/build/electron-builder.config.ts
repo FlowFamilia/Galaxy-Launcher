@@ -13,24 +13,20 @@ const linuxPackageScripts = {
 }
 
 export const config = {
-  productName: 'XMCL',
-  appId: 'xmcl',
+  productName: 'Galaxy Launcher',
+  appId: 'com.gamerzone.flowlauncher',
   directories: {
     output: 'build/output',
     buildResources: 'build',
     app: '.',
   },
   protocols: {
-    name: 'XMCL',
-    schemes: ['xmcl'],
+    name: 'Galaxy Launcher',
+    schemes: ['xmcl', 'flowlauncher'],
   },
   // assign publish for auto-updater
   // set this to your own repo!
-  publish: [{
-    provider: 'github',
-    owner: 'voxelum',
-    repo: 'x-minecraft-launcher',
-  }],
+  publish: [],
   files: [{
     from: 'dist',
     to: '.',
@@ -45,9 +41,9 @@ export const config = {
     to: 'agent-documents',
     filter: ['**/*.md'],
   }],
-  artifactName: 'xmcl-${version}-${platform}-${arch}.${ext}',
+  artifactName: 'galaxy-launcher-${version}-${platform}-${arch}.${ext}',
   appx: {
-    displayName: 'XMCL',
+    displayName: 'Galaxy Launcher',
     applicationId: 'xmcl',
     identityName: 'xmcl',
     backgroundColor: 'transparent',
@@ -56,7 +52,7 @@ export const config = {
     setBuildNumber: true,
   },
   dmg: {
-    artifactName: 'xmcl-${version}-${arch}.${ext}',
+    artifactName: 'galaxy-launcher-${version}-${arch}.${ext}',
     contents: [
       {
         x: 410,
@@ -96,28 +92,22 @@ export const config = {
     icon: 'icons/dark.ico',
     electronLanguages: ['en-US'],
     target: [
-      {
-        target: 'zip',
-        arch: [
-          'x64',
-          'ia32',
-        ],
-      },
-      'appx',
+      { target: 'nsis', arch: ['x64', 'arm64'] },
+      { target: 'zip', arch: ['x64', 'arm64'] },
     ],
   },
   linux: {
-    executableName: 'xmcl',
+    executableName: 'galaxy-launcher',
     electronLanguages: ['en-US'],
     desktop: {
       entry: {
         MimeType: 'x-scheme-handler/xmcl',
-        StartupWMClass: 'xmcl',
+        StartupWMClass: 'galaxy-launcher',
       },
     },
     category: 'Game',
     icon: 'icons/dark.icns',
-    artifactName: 'xmcl-${version}-${arch}.${ext}',
+    artifactName: 'galaxy-launcher-${version}-${arch}.${ext}',
     target: [
       { target: 'deb', arch: ['x64', 'arm64'] },
       { target: 'rpm', arch: ['x64', 'arm64'] },

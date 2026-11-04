@@ -52,6 +52,7 @@
 
 <script lang=ts setup>
 import '@/assets/common.css'
+import '@/assets/flow-theme.css'
 import AppImageDialog from '@/components/AppImageDialog.vue'
 import InstanceScreenshots from '@/views/InstanceScreenshots.vue'
 import AppSharedTooltip from '@/components/AppSharedTooltip.vue'
