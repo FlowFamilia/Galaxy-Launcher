@@ -1,0 +1,72 @@
+name: Galaxy Launcher - Windows Build
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - "xmcl-runtime/**"
+      - "xmcl-runtime-api/**"
+      - "xmcl-keystone-ui/**"
+      - "xmcl-electron-app/**"
+      - "packages/**"
+      - "package.json"
+      - "pnpm-lock.yaml"
+      - "pnpm-workspace.yaml"
+      - ".github/workflows/windows-build.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  build-windows:
+    runs-on: windows-latest
+    timeout-minutes: 90
+    env:
+      ELECTRON_CACHE: ${{ github.workspace }}/.cache/electron
+      ELECTRON_BUILDER_CACHE: ${{ github.workspace }}/.cache/electron-builder
+      NODE_OPTIONS: --max-old-space-size=8192
+
+    steps:
+      - name: Checkout source
+        uses: actions/checkout@v5
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v6
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v5
+        with:
+          node-version: 22
+          cache: pnpm
+
+      - name: Cache Electron downloads
+        uses: actions/cache@v5
+        with:
+          path: |
+            ${{ github.workspace }}/.cache/electron
+            ${{ github.workspace }}/.cache/electron-builder
+          key: ${{ runner.os }}-galaxy-electron-${{ hashFiles('pnpm-lock.yaml') }}
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Build launcher interface
+        run: pnpm run --prefix xmcl-keystone-ui build
+
+      - name: Build Windows installers
+        run: pnpm run --prefix xmcl-electron-app build
+        env:
+          BUILD_TARGET: win
+          NODE_ENV: production
+
+      - name: Upload Windows installers
+        uses: actions/upload-artifact@v6
+        with:
+          name: galaxy-launcher-windows-${{ github.run_number }}
+          path: |
+            xmcl-electron-app/build/output/*.exe
+            xmcl-electron-app/build/output/*.zip
+          if-no-files-found: error
+          retention-days: 14
